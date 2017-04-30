@@ -432,6 +432,28 @@ static uint8_t color_palette_jared[TSM_COLOR_NUM][3] = {
 	[TSM_COLOR_BACKGROUND]    = {  35,  38,  39 }, /* black */
 };
 
+static uint8_t color_palette_os_x[COLOR_NUM][3] = {
+	[COLOR_BLACK]         = {   0,   0,   0 }, /* black */
+	[COLOR_RED]           = { 153,   0,   0 }, /* red */
+	[COLOR_GREEN]         = {   0, 166,   0 }, /* green */
+	[COLOR_YELLOW]        = { 153, 153,   0 }, /* yellow */
+	[COLOR_BLUE]          = {   0,   0, 178 }, /* blue */
+	[COLOR_MAGENTA]       = { 178,   0, 178 }, /* magenta */
+	[COLOR_CYAN]          = {   0, 166, 178 }, /* cyan */
+	[COLOR_LIGHT_GREY]    = { 191, 191, 191 }, /* light grey */
+	[COLOR_DARK_GREY]     = { 102, 102, 102 }, /* dark grey */
+	[COLOR_LIGHT_RED]     = { 229,   0,   0 }, /* light red */
+	[COLOR_LIGHT_GREEN]   = {   0, 217,   0 }, /* light green */
+	[COLOR_LIGHT_YELLOW]  = { 229, 229,   0 }, /* light yellow */
+	[COLOR_LIGHT_BLUE]    = {   0,   0, 255 }, /* light blue */
+	[COLOR_LIGHT_MAGENTA] = { 229,   0, 229 }, /* light magenta */
+	[COLOR_LIGHT_CYAN]    = {   0, 229, 229 }, /* light cyan */
+	[COLOR_WHITE]         = { 229, 229, 229 }, /* white */
+
+	[COLOR_FOREGROUND]    = {   0,   0,   0 }, /* black */
+	[COLOR_BACKGROUND]    = { 255, 255, 255 }, /* light grey */
+};
+
 static uint8_t (*get_palette(struct tsm_vte *vte))[3]
 {
 	if (!vte->palette_name)
@@ -459,6 +481,8 @@ static uint8_t (*get_palette(struct tsm_vte *vte))[3]
 		return color_palette_oceanic_next;
 	if (!strcmp(vte->palette_name, "jared"))
 		return color_palette_jared;
+	if (!strcmp(vte->palette_name, "os-x"))
+		return color_palette_os_x;
 
 	return color_palette;
 }
@@ -758,6 +782,7 @@ static void reset_state(struct tsm_vte *vte)
 	vte->saved_state.cattr.inverse = 0;
 	vte->saved_state.cattr.protect = 0;
 	vte->saved_state.cattr.blink = 0;
+	vte->saved_state.cattr.cursor = 0;
 }
 
 static void save_state(struct tsm_vte *vte)
