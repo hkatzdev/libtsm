@@ -152,7 +152,9 @@ tsm_age_t tsm_screen_draw(struct tsm_screen *con, tsm_screen_draw_cb draw_cb,
 
 			if (in_sel || was_sel) {
 				was_sel = false;
-				attr.inverse = !attr.inverse;
+				attr.selection = 1;
+			} else {
+				attr.selection = 0;
 			}
 
       //~ llog_debug(con,"ce=%u le=%u cone=%u \n", (int)cell->age,(int)line->age,(int)con->age);
