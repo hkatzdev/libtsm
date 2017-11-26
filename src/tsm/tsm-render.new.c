@@ -48,11 +48,10 @@ tsm_age_t tsm_screen_draw(struct tsm_screen *con, tsm_screen_draw_cb draw_cb,
 	unsigned int cur_x, cur_y;
 	unsigned int i, j, k;
 	struct line *iter, *line = NULL;
-	struct cell *cell, empty;
+	struct cell *cell;
 	struct tsm_screen_attr attr;
 	int ret, warned = 0;
 	const uint32_t *ch;
-	uint64_t id;
 	size_t len;
 	bool in_sel = false, sel_start = false, sel_end = false;
 	bool was_sel = false;
@@ -60,8 +59,6 @@ tsm_age_t tsm_screen_draw(struct tsm_screen *con, tsm_screen_draw_cb draw_cb,
 
 	if (!con || !draw_cb)
 		return 0;
-
-	screen_cell_init(con, &empty);
 
 	cur_x = con->cursor_x;
 	if (con->cursor_x >= con->size_x)
@@ -116,11 +113,7 @@ tsm_age_t tsm_screen_draw(struct tsm_screen *con, tsm_screen_draw_cb draw_cb,
 		}
 
 		for (j = 0; j < con->size_x; ++j) {
-			if (j < line->size)
-				cell = &line->cells[j];
-			else
-				cell = &empty;
-
+			cell = &line->cells[j];
 			memcpy(&attr, &cell->attr, sizeof(attr));
 
 			if (con->sel_active) {
@@ -164,23 +157,10 @@ tsm_age_t tsm_screen_draw(struct tsm_screen *con, tsm_screen_draw_cb draw_cb,
 			}
       max_age = ( max_age < age ? age : max_age);
 
-			/* Encode attributes into the id to avoid caching problems */
-			id = cell->ch;
-			if (attr.bold)
-				id |= 1ULL << TSM_UCS4_MAX_BITS;
-			if (attr.italic)
-				id |= 1ULL << (TSM_UCS4_MAX_BITS + 1);
-			if (attr.underline)
-				id |= 1ULL << (TSM_UCS4_MAX_BITS + 2);
-			if (attr.inverse)
-				id |= 1ULL << (TSM_UCS4_MAX_BITS + 3);
-			if (attr.blink)
-				id |= 1ULL << (TSM_UCS4_MAX_BITS + 4);
-
 			ch = tsm_symbol_get(con->sym_table, &cell->ch, &len);
-			if (cell->ch == 0 || (cell->ch == ' ' && !attr.underline))
+			if (cell->ch == ' ' || cell->ch == 0)
 				len = 0;
-			ret = draw_cb(con, id, ch, len, cell->width,
+			ret = draw_cb(con, cell->ch, ch, len, cell->width,
 				      j, i, &attr, age, data);
 			if (ret && warned++ < 3) {
 				llog_debug(con,
