@@ -409,6 +409,28 @@ static uint8_t color_palette_oceanic_next[TSM_COLOR_NUM][3] = {
 	[TSM_COLOR_BACKGROUND]    = {  27,  43,  52 }, /* black */
 };
 
+static uint8_t color_palette_jared[TSM_COLOR_NUM][3] = {
+	[TSM_COLOR_BLACK]         = {   0,   0,   0 }, /* black */
+	[TSM_COLOR_RED]           = { 237,  21,  21 }, /* red */
+	[TSM_COLOR_GREEN]         = {  17, 209,  22 }, /* green */
+	[TSM_COLOR_YELLOW]        = { 246, 116,   0 }, /* yellow */
+	[TSM_COLOR_BLUE]          = {  29, 153, 243 }, /* blue */
+	[TSM_COLOR_MAGENTA]       = { 155,  89, 182 }, /* magenta */
+	[TSM_COLOR_CYAN]          = {  26, 188, 156 }, /* cyan */
+	[TSM_COLOR_LIGHT_GREY]    = { 239, 239, 239 }, /* light grey */
+	[TSM_COLOR_DARK_GREY]     = { 127, 140, 141 }, /* dark grey */
+	[TSM_COLOR_LIGHT_RED]     = { 192,  57,  43 }, /* light red */
+	[TSM_COLOR_LIGHT_GREEN]   = {  28, 220, 154 }, /* light green */
+	[TSM_COLOR_LIGHT_YELLOW]  = { 253, 188,  75 }, /* light yellow */
+	[TSM_COLOR_LIGHT_BLUE]    = {  61, 174, 233 }, /* light blue */
+	[TSM_COLOR_LIGHT_MAGENTA] = { 142,  68, 173 }, /* light magenta */
+	[TSM_COLOR_LIGHT_CYAN]    = {  22, 160, 133 }, /* light cyan */
+	[TSM_COLOR_WHITE]         = { 255, 255, 255 }, /* white */
+
+	[TSM_COLOR_FOREGROUND]    = { 239, 239, 239 }, /* light grey */
+	[TSM_COLOR_BACKGROUND]    = {  35,  38,  39 }, /* black */
+};
+
 static uint8_t (*get_palette(struct tsm_vte *vte))[3]
 {
 	if (!vte->palette_name)
@@ -434,6 +456,8 @@ static uint8_t (*get_palette(struct tsm_vte *vte))[3]
 		return color_palette_one_dark;
 	if (!strcmp(vte->palette_name, "oceanic-next"))
 		return color_palette_oceanic_next;
+	if (!strcmp(vte->palette_name, "jared"))
+		return color_palette_jared;
 
 	return color_palette;
 }
