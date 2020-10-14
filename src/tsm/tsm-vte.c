@@ -432,26 +432,26 @@ static uint8_t color_palette_jared[TSM_COLOR_NUM][3] = {
 	[TSM_COLOR_BACKGROUND]    = {  35,  38,  39 }, /* black */
 };
 
-static uint8_t color_palette_os_x[COLOR_NUM][3] = {
-	[COLOR_BLACK]         = {   0,   0,   0 }, /* black */
-	[COLOR_RED]           = { 153,   0,   0 }, /* red */
-	[COLOR_GREEN]         = {   0, 166,   0 }, /* green */
-	[COLOR_YELLOW]        = { 153, 153,   0 }, /* yellow */
-	[COLOR_BLUE]          = {   0,   0, 178 }, /* blue */
-	[COLOR_MAGENTA]       = { 178,   0, 178 }, /* magenta */
-	[COLOR_CYAN]          = {   0, 166, 178 }, /* cyan */
-	[COLOR_LIGHT_GREY]    = { 191, 191, 191 }, /* light grey */
-	[COLOR_DARK_GREY]     = { 102, 102, 102 }, /* dark grey */
-	[COLOR_LIGHT_RED]     = { 229,   0,   0 }, /* light red */
-	[COLOR_LIGHT_GREEN]   = {   0, 217,   0 }, /* light green */
-	[COLOR_LIGHT_YELLOW]  = { 229, 229,   0 }, /* light yellow */
-	[COLOR_LIGHT_BLUE]    = {   0,   0, 255 }, /* light blue */
-	[COLOR_LIGHT_MAGENTA] = { 229,   0, 229 }, /* light magenta */
-	[COLOR_LIGHT_CYAN]    = {   0, 229, 229 }, /* light cyan */
-	[COLOR_WHITE]         = { 229, 229, 229 }, /* white */
+static uint8_t color_palette_os_x[TSM_COLOR_NUM][3] = {
+	[TSM_COLOR_BLACK]         = {   0,   0,   0 }, /* black */
+	[TSM_COLOR_RED]           = { 153,   0,   0 }, /* red */
+	[TSM_COLOR_GREEN]         = {   0, 166,   0 }, /* green */
+	[TSM_COLOR_YELLOW]        = { 153, 153,   0 }, /* yellow */
+	[TSM_COLOR_BLUE]          = {   0,   0, 178 }, /* blue */
+	[TSM_COLOR_MAGENTA]       = { 178,   0, 178 }, /* magenta */
+	[TSM_COLOR_CYAN]          = {   0, 166, 178 }, /* cyan */
+	[TSM_COLOR_LIGHT_GREY]    = { 191, 191, 191 }, /* light grey */
+	[TSM_COLOR_DARK_GREY]     = { 102, 102, 102 }, /* dark grey */
+	[TSM_COLOR_LIGHT_RED]     = { 229,   0,   0 }, /* light red */
+	[TSM_COLOR_LIGHT_GREEN]   = {   0, 217,   0 }, /* light green */
+	[TSM_COLOR_LIGHT_YELLOW]  = { 229, 229,   0 }, /* light yellow */
+	[TSM_COLOR_LIGHT_BLUE]    = {   0,   0, 255 }, /* light blue */
+	[TSM_COLOR_LIGHT_MAGENTA] = { 229,   0, 229 }, /* light magenta */
+	[TSM_COLOR_LIGHT_CYAN]    = {   0, 229, 229 }, /* light cyan */
+	[TSM_COLOR_WHITE]         = { 229, 229, 229 }, /* white */
 
-	[COLOR_FOREGROUND]    = {   0,   0,   0 }, /* black */
-	[COLOR_BACKGROUND]    = { 255, 255, 255 }, /* light grey */
+	[TSM_COLOR_FOREGROUND]    = {   0,   0,   0 }, /* black */
+	[TSM_COLOR_BACKGROUND]    = { 255, 255, 255 }, /* light grey */
 };
 
 static uint8_t (*get_palette(struct tsm_vte *vte))[3]
