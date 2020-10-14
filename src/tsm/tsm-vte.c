@@ -454,6 +454,28 @@ static uint8_t color_palette_os_x[TSM_COLOR_NUM][3] = {
 	[TSM_COLOR_BACKGROUND]    = { 255, 255, 255 }, /* light grey */
 };
 
+static uint8_t color_palette_arch[TSM_COLOR_NUM][3] = {
+	[TSM_COLOR_BLACK]         = {   0,   0,   0 }, /* black */
+	[TSM_COLOR_RED]           = { 170,   0,   0 }, /* red */
+	[TSM_COLOR_GREEN]         = {   0, 170,   0 }, /* green */
+	[TSM_COLOR_YELLOW]        = { 170,  85,   0 }, /* yellow */
+	[TSM_COLOR_BLUE]          = {   0,   0, 170 }, /* blue */
+	[TSM_COLOR_MAGENTA]       = { 170,   0, 170 }, /* magenta */
+	[TSM_COLOR_CYAN]          = {   0, 170, 170 }, /* cyan */
+	[TSM_COLOR_LIGHT_GREY]    = { 170, 170, 170 }, /* light grey */
+	[TSM_COLOR_DARK_GREY]     = {  85,  85,  85 }, /* dark grey */
+	[TSM_COLOR_LIGHT_RED]     = { 255,  85,  85 }, /* light red */
+	[TSM_COLOR_LIGHT_GREEN]   = {  85, 255,  85 }, /* light green */
+	[TSM_COLOR_LIGHT_YELLOW]  = { 255, 255,  85 }, /* light yellow */
+	[TSM_COLOR_LIGHT_BLUE]    = {  85,  85, 255 }, /* light blue */
+	[TSM_COLOR_LIGHT_MAGENTA] = { 255,  85, 255 }, /* light magenta */
+	[TSM_COLOR_LIGHT_CYAN]    = {  85, 255, 255 }, /* light cyan */
+	[TSM_COLOR_WHITE]         = { 255, 255, 255 }, /* white */
+
+	[TSM_COLOR_FOREGROUND]    = { 170, 170, 170 }, /* light grey */
+	[TSM_COLOR_BACKGROUND]    = {   0,   0,   0 }, /* black */
+};
+
 static uint8_t (*get_palette(struct tsm_vte *vte))[3]
 {
 	if (!vte->palette_name)
@@ -483,6 +505,8 @@ static uint8_t (*get_palette(struct tsm_vte *vte))[3]
 		return color_palette_jared;
 	if (!strcmp(vte->palette_name, "os-x"))
 		return color_palette_os_x;
+	if (!strcmp(vte->palette_name, "arch"))
+		return color_palette_arch;
 
 	return color_palette;
 }
